@@ -24,9 +24,10 @@ namespace PromotionApi.Migrations
                     Code = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
                     DateStart = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     DateExpire = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    QuantityAvailable = table.Column<int>(type: "int", nullable: false),
                     Condition = table.Column<double>(type: "double", nullable: false),
                     Discount = table.Column<float>(type: "float", nullable: false),
-                    IdMer = table.Column<string>(type: "longtext", nullable: false)
+                    MerchantId = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,13 +37,19 @@ namespace PromotionApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Promotions",
-                columns: new[] { "Id", "Code", "Condition", "DateExpire", "DateStart", "Discount", "IdMer" },
+                columns: new[] { "Id", "Code", "Condition", "DateExpire", "DateStart", "Discount", "MerchantId", "QuantityAvailable" },
                 values: new object[,]
                 {
-                    { "05b81e12-76fd-4f2f-93a3-31771ac40dd2", "HOLIDAY2023", 100.0, new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0.25f, "39ae71a3-1f29-4c5e-a0e8-12e06b70f7b5" },
-                    { "7130a7c3-3896-495d-b58a-cadfbce4ef78", "FALLSALE2023", 75.0, new DateTime(2023, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0.2f, "39ae71a3-1f29-4c5e-a0e8-12e06b70f7b5" },
-                    { "fdc011be-2fd5-4b96-8c96-943caa9bb663", "SUMMER2023", 50.0, new DateTime(2023, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0.15f, "39ae71a3-1f29-4c5e-a0e8-12e06b70f7b5" }
+                    { "07965e75-5e8e-498f-ad3e-91ab366bbb3a", "HOLIDAY2023", 950000.0, new DateTime(2024, 7, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 25f, "2236b29d-c850-4c6e-bb29-629be5eace69", 200 },
+                    { "634f7816-e921-4873-b7d6-d583c717ded0", "FALLSALE2023", 750000.0, new DateTime(2024, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 20f, "2236b29d-c850-4c6e-bb29-629be5eace69", 400 },
+                    { "fb063534-11fe-40a5-ae59-ecc53bbc6eb7", "SUMMER2023", 850000.0, new DateTime(2024, 7, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 15f, "2236b29d-c850-4c6e-bb29-629be5eace69", 40 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Promotions_Code",
+                table: "Promotions",
+                column: "Code",
+                unique: true);
         }
 
         /// <inheritdoc />

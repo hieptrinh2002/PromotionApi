@@ -25,6 +25,9 @@ public class PromotionDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Promotion>()
+            .HasIndex(p => p.Code)
+            .IsUnique();
         base.OnModelCreating(modelBuilder);
 
         // Seed data for Promotion table
@@ -32,29 +35,32 @@ public class PromotionDbContext : DbContext
             new Promotion
             {
                 Code = "SUMMER2023",
-                DateStart = new DateTime(2023, 6, 1),
-                DateExpire = new DateTime(2023, 8, 31),
-                Condition = 50.0,
-                Discount = 0.15f,
-                IdMer = "39ae71a3-1f29-4c5e-a0e8-12e06b70f7b5"
+                DateStart = new DateTime(2024, 6, 1),
+                DateExpire = new DateTime(2024, 7, 31),
+                Condition = 850000,
+                Discount = 15f,
+                QuantityAvailable = 40,
+                MerchantId = "2236b29d-c850-4c6e-bb29-629be5eace69"
             },
             new Promotion
             {
                 Code = "FALLSALE2023",
-                DateStart = new DateTime(2023, 9, 1),
-                DateExpire = new DateTime(2023, 11, 30),
-                Condition = 75.0,
-                Discount = 0.20f,
-                IdMer = "39ae71a3-1f29-4c5e-a0e8-12e06b70f7b5"
+                DateStart = new DateTime(2024, 6, 1),
+                DateExpire = new DateTime(2024, 8, 30),
+                Condition = 750000,
+                Discount = 20f,
+                QuantityAvailable = 400,
+                MerchantId = "2236b29d-c850-4c6e-bb29-629be5eace69"
             },
             new Promotion
             {
                 Code = "HOLIDAY2023",
-                DateStart = new DateTime(2023, 12, 1),
-                DateExpire = new DateTime(2023, 12, 31),
-                Condition = 100.0,
-                Discount = 0.25f,
-                IdMer = "39ae71a3-1f29-4c5e-a0e8-12e06b70f7b5"
+                DateStart = new DateTime(2024, 6, 1),
+                DateExpire = new DateTime(2024, 7, 31),
+                Condition = 950000,
+                Discount = 25f,
+                QuantityAvailable = 200,
+                MerchantId = "2236b29d-c850-4c6e-bb29-629be5eace69"
             }
         ); ;
     }

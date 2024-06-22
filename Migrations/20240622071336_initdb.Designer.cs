@@ -11,7 +11,7 @@ using PromotionApi.Models;
 namespace PromotionApi.Migrations
 {
     [DbContext(typeof(PromotionDbContext))]
-    [Migration("20240613082351_initdb")]
+    [Migration("20240622071336_initdb")]
     partial class initdb
     {
         /// <inheritdoc />
@@ -44,44 +44,53 @@ namespace PromotionApi.Migrations
                     b.Property<float>("Discount")
                         .HasColumnType("float");
 
-                    b.Property<string>("IdMer")
+                    b.Property<string>("MerchantId")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("QuantityAvailable")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
 
                     b.ToTable("Promotions");
 
                     b.HasData(
                         new
                         {
-                            Id = "fdc011be-2fd5-4b96-8c96-943caa9bb663",
+                            Id = "fb063534-11fe-40a5-ae59-ecc53bbc6eb7",
                             Code = "SUMMER2023",
-                            Condition = 50.0,
-                            DateExpire = new DateTime(2023, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2023, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Discount = 0.15f,
-                            IdMer = "39ae71a3-1f29-4c5e-a0e8-12e06b70f7b5"
+                            Condition = 850000.0,
+                            DateExpire = new DateTime(2024, 7, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 15f,
+                            MerchantId = "2236b29d-c850-4c6e-bb29-629be5eace69",
+                            QuantityAvailable = 40
                         },
                         new
                         {
-                            Id = "7130a7c3-3896-495d-b58a-cadfbce4ef78",
+                            Id = "634f7816-e921-4873-b7d6-d583c717ded0",
                             Code = "FALLSALE2023",
-                            Condition = 75.0,
-                            DateExpire = new DateTime(2023, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2023, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Discount = 0.2f,
-                            IdMer = "39ae71a3-1f29-4c5e-a0e8-12e06b70f7b5"
+                            Condition = 750000.0,
+                            DateExpire = new DateTime(2024, 8, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 20f,
+                            MerchantId = "2236b29d-c850-4c6e-bb29-629be5eace69",
+                            QuantityAvailable = 400
                         },
                         new
                         {
-                            Id = "05b81e12-76fd-4f2f-93a3-31771ac40dd2",
+                            Id = "07965e75-5e8e-498f-ad3e-91ab366bbb3a",
                             Code = "HOLIDAY2023",
-                            Condition = 100.0,
-                            DateExpire = new DateTime(2023, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateStart = new DateTime(2023, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Discount = 0.25f,
-                            IdMer = "39ae71a3-1f29-4c5e-a0e8-12e06b70f7b5"
+                            Condition = 950000.0,
+                            DateExpire = new DateTime(2024, 7, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateStart = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Discount = 25f,
+                            MerchantId = "2236b29d-c850-4c6e-bb29-629be5eace69",
+                            QuantityAvailable = 200
                         });
                 });
 #pragma warning restore 612, 618

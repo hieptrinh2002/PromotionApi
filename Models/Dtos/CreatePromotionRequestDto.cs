@@ -1,17 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace PromotionApi.Models
+namespace PromotionApi.Models.Dtos
 {
-    public class Promotion
+    public class CreatePromotionRequestDto
     {
-        [Key]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-
         [Required]
         [StringLength(255)]
-        [Index(IsUnique = true)]
         public string Code { get; set; }
 
         [Required]
@@ -34,21 +28,6 @@ namespace PromotionApi.Models
 
         [Required]
         public string MerchantId { get; set; }
-
-
-        public bool IsQuantityAvailable()
-        {
-            return QuantityAvailable > 0;
-        }
-        public bool IsExpired()
-        {
-            return DateExpire < DateTime.Now;
-        }
-
-        public bool isNotStart()
-        {
-            return DateStart > DateTime.Now;
-        }
 
         public static ValidationResult ValidateDateStart(DateTime dateStart, ValidationContext context)
         {
